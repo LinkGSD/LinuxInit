@@ -16,3 +16,6 @@
   systemctl start kube-scheduler
   systemctl start kubelet
   systemctl start kube-proxy
+
+
+https://www.jianshu.com/p/6739745dd404
