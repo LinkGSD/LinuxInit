@@ -1,0 +1,18 @@
+关闭防火墙
+  systemctl disable firewalld
+  systemctl stop firewalld
+安装etcd,会自动安装docker
+  yum install -y etcd kubernetes
+修改/etc/sysconfig/docker
+  OPTIONS='--selinux-enabled=false --insecure-registry gcr.io'
+修改/etc/kubernetes/apiserver文件
+  KUBE_ADMISSION_CONTROL="--admission-control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ResourceQuota"
+  
+服务启动
+  systemctl start etcd
+  systemctl start docker
+  systemctl start kube-apiserver
+  systemctl start kube-controller-manager
+  systemctl start kube-scheduler
+  systemctl start kubelet
+  systemctl start kube-proxy
