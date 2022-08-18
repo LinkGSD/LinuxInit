@@ -1,0 +1,18 @@
+配置静态ip
+  vim /etc/sysconfig/network-scripts/ifcfg-ens33
+  BOOTPROTO="static" 
+  IPADDR=192.168.223.24
+  NETMASK=225.225.225.0
+  GATEWAY=192.168.223.2  //重要,不然没网
+  DNS1=8.8.8.8
+  systemctl restart network
+关闭防火墙
+  systemctl stop firewalld
+  systemctl disable firewalld
+替换yum源
+  wget http://mirrors.aliyun.com/repo/Centos-7.repo
+  cd /etc/yum.repos.d/
+  cp /CentOS-Base.repo /CentOS-Base-repo.bak
+  mv Centos-7.repo CentOS-Base.repo
+  yum makecache
+  yum -y update
